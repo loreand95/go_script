@@ -6,7 +6,11 @@ Set environment variable $GO_PATH with path of go_path.bak
 
 ```
 > cd /Users/username
-> echo "export GO_PATH=/...custom path.../go_path.bak" >> .bash_profile
+> echo 'export GO_PATH=/...custom path.../go_path.bak' >> .bash_profile
+```
+Add folder to $PATH
+```
+> echo 'export PATH=$PATH:/.../Go_script-master' >> .bash_profile
 ```
 Add alias to script	
 ```
@@ -18,7 +22,22 @@ Add alias to script
 ```
 > go
 ```
+![](https://github.com/loreand95/Go_script/blob/master/images/go-move.gif)
 
+### Save favourite path
+```
+> cd / ... / path
+> go now
+```
+![](https://github.com/loreand95/Go_script/blob/master/images/go-save.gif)
+
+### Remove path
+```
+> go
+> rm
+> number of path
+```
+![](https://github.com/loreand95/Go_script/blob/master/images/go-remove.gif)
 
 ## Author
 Lorenzo Andreoli
