@@ -5,7 +5,7 @@
 #																	  #
 # Tested on:  macOS Mojave 10.14.2 			   						  #
 #																	  #
-#							  INSTRUCTIONS							  #
+#							 INSTRUCTIONS							  #
 # 1) Set environment variable $GO_PATH with path of go_path.bak.txt   #
 # 	 Example:														  #
 #    export GO_PATH=/Users/loreand/go/go_path.bak					  #
@@ -13,7 +13,7 @@
 # 2) Go to directory, cd /.../go 									  #
 # 3) Run command with ". go" or "source go"							  #
 #					  												  #
-# 								  TIPS       						  #
+# 								TIPS       							  #
 # Add script folder to $PATH and add ' alias go=". go" ' to env	      #
 #																	  #
 # 												 Lorenzo Andreoli     #
@@ -26,7 +26,7 @@ check_configuration(){
 	if [ -z $GO_PATH ]
 		then
 		echo '-ERROR: $GO_PATH NOT FOUND!'
-		echo -e '-TIP: Check if $GO_PATH is add on environment variable :)\n'
+		echo -e "-TIP: Check if $GO_PATH is add on environment variable :)\n"
 		
 		return 1
 
@@ -52,8 +52,7 @@ removepath(){
 	# sed -i $1d $GO_PATH
 }
 
-go(){
-
+go_path(){
 	#Check exist first parameter
 	if [ -z $1 ]
 		#No parameter, see favourite list
@@ -102,10 +101,9 @@ main(){
 
 	if [ $? -eq 0 ]
 		then
-			go "$@"
+			go_path "$@"
 		else
-		echo -e "EXIT - How to run the script? More details on www.github.com/loreand95/Go_script\n"
-		
+		echo -e "EXIT - How to run the script? More details on www.github.com/loreand95/Go_script\n"	
 	fi
 }
 
