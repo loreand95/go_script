@@ -6,7 +6,7 @@ Set environment variable $GO_PATH with path of go_path.bak
 
 ```
 > cd /Users/username
-> echo 'export GO_PATH=/...custom path.../go_path.bak' >> .bash_profile
+> echo 'export GO_PATH=/.../Go_script-master/go_path.bak' >> .bash_profile
 ```
 Add folder to $PATH
 ```
@@ -14,7 +14,7 @@ Add folder to $PATH
 ```
 Add alias to script	
 ```
-> echo alias go=". go" >> .bash_profile
+> echo 'alias go=". go"' >> .bash_profile
 ```
 ## Run
 
