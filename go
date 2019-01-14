@@ -1,23 +1,23 @@
 #!/bin/bash
 
-# *************************    GO - V.01    ************************* #
-# Script to save and navigate on your list of favourite path 		  #
-#																	  #
-# Tested on:  macOS Mojave 10.14.2 			   						  #
-#																	  #
-#							 INSTRUCTIONS							  #
-# 1) Set environment variable $GO_PATH with path of go_path.bak.txt   #
-# 	 Example:														  #
-#    export GO_PATH=/Users/loreand/go/go_path.bak					  #
-# 	  																  #
-# 2) Go to directory, cd /.../go 									  #
-# 3) Run command with ". go" or "source go"							  #
-#					  												  #
-# 								TIPS       							  #
-# Add script folder to $PATH and add ' alias go=". go" ' to env	      #
-#																	  #
-# 												 Lorenzo Andreoli     #
-# ******************************************************************* #
+# *************************    GO - V.01    ***************************	#
+# Script to save and navigate on your list of favourite path		#
+#									#
+# Tested on:  macOS Mojave 10.14.2					#
+#									#
+#			      INSTRUCTIONS				#
+# 1) Set environment variable $GO_PATH with path of go_path.bak.txt	#
+# 	 Example:							#
+#    export GO_PATH=/Users/loreand/go/go_path.bak			#
+#									#
+# 2) Go to directory, cd /.../go					#
+# 3) Run command with ". go" or "source go"				#
+#									#
+#				TIPS					#
+# Add script folder to $PATH and add ' alias go=". go" ' to env		#
+#									#
+# 						Lorenzo Andreoli	#
+# ********************************************************************* #
 
 
 #Function to check configuration script
@@ -103,6 +103,7 @@ main(){
 		then
 			go_path "$@"
 		else
+		#Check configuration return 1
 		echo -e "EXIT - How to run the script? More details on www.github.com/loreand95/Go_script\n"	
 	fi
 }
