@@ -22,14 +22,15 @@
 
 #Function to check configuration script
 check_configuration(){
-
+	#Is $GO_PATH env?
 	if [ -z $GO_PATH ]
+		#NO
 		then
 		echo '-ERROR: $GO_PATH NOT FOUND!'
 		echo -e "-TIP: Check if $GO_PATH is add on environment variable :)\n"
 		
 		return 1
-
+		#Is $GO_PATH valid?
 		elif [ ! -e $GO_PATH ]
 			then
 			echo -e "-ERROR: $GO_PATH NOT EXIST!"
@@ -38,6 +39,7 @@ check_configuration(){
 }
 
 #Function to move path by input number
+#$1 = number of row selected
 movetopath(){
 	path=$( awk "NR==$1" $GO_PATH )
 	cd $path
@@ -45,6 +47,7 @@ movetopath(){
 
 
 #Function to remove path by input number
+#$1 = number of row selected
 removepath(){
 	sed -i '' $1d $GO_PATH
 
@@ -53,12 +56,13 @@ removepath(){
 }
 
 go_path(){
-	#Check exist first parameter
+	# 1 parameter is empty?
 	if [ -z $1 ]
-		#No parameter, see favourite list
+		#Yes, see favourite list
 		then
-			#TODO check if exist favourite.txt
+			#Print and enumerate
 			cat $GO_PATH | nl
+			#Get input choise
 			read -p '> ' choise
 			
 			if [[ $choise == *"rm"* ]]
@@ -72,22 +76,24 @@ go_path(){
 			fi
 
 
-		#The parameter 'now', save path
+		#No, the parameter is 'now', save path
 		elif [ $1 = "now" ]
 			then
 
 			#Get number lines
 			let number_line=$(( $( cat $GO_PATH | wc -l ) +1))
-		
+			#save list
 			echo "$( pwd )">> $GO_PATH
+			#print path saved
 			echo "Save path: $( pwd ) as $number_line" 
 
 
-		#The parameter is a number option
+		#No, the parameter is a number option
 		elif [[ $1 =~ ^-?[0-9]+$ ]]
 			then
 			movetopath $1 #go to path
-
+		
+		#No, input not recognized
 		else
 			echo "some is wrong :("
 	fi
@@ -96,14 +102,15 @@ go_path(){
 
 # Main function
 main(){
-	#Check configuration
+	#Check $GO_PATH exist
 	check_configuration
 
 	if [ $? -eq 0 ]
+		#Right configuration :)
 		then
 			go_path "$@"
 		else
-		#Check configuration return 1
+		#Bad configuration :(
 		echo -e "EXIT - How to run the script? More details on www.github.com/loreand95/Go_script\n"	
 	fi
 }
