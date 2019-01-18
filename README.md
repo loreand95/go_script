@@ -24,15 +24,12 @@ $ go
 $ cd [path]
 $ go now
 ```
-![](https://github.com/loreand95/Go_script/blob/master/images/go-save.gif)
 
 ### Remove path
 ```
 $ go
-$ rm
-$ number of path
+$ rm [ number of path ]
 ```
-![](https://github.com/loreand95/Go_script/blob/master/images/go-remove.gif)
 
 ## Author
 Lorenzo Andreoli
