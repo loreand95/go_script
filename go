@@ -5,11 +5,11 @@
 #                                                                       #
 # Tested on:  macOS Mojave 10.14.2                                      #
 #                                                                       #
-#INSTRUCTIONS                                                           #
+#                            INSTRUCTIONS                               #
 # 1) Go to directory, cd /go/to/path/Go_script                          #
 # 2) Run command with ". go" or "source go"                             #
 #                                                                       #
-#TIPS                                                                   #
+#                               TIPS                                    #
 # Add 'alias go=". go"' to env to run "go" everywhere                   #
 #                                                                       #
 #                                           Lorenzo Andreoli            #
