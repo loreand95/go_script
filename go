@@ -5,19 +5,14 @@
 #                                                                       #
 # Tested on:  macOS Mojave 10.14.2                                      #
 #                                                                       #
-#                            INSTRUCTIONS                               #
-# 1) Go to directory, cd /go/to/path/Go_script                          #
-# 2) Run command with ". go" or "source go"                             #
-#                                                                       #
-#                               TIPS                                    #
-# Add 'alias go=". go"' to env to run "go" everywhere                   #
-#                                                                       #
 #                                           Lorenzo Andreoli            #
 # ********************************************************************* #
 
 PATH_GO=$(which go)
 DIR_GO=$(dirname "$PATH_GO")
 export PATH_GO_LIST="$DIR_GO/go_list.bak"
+
+
 
 #Function to check configuration script
 check_configuration(){
@@ -40,7 +35,7 @@ check_configuration(){
 #Function to move path by input number
 #$1 = number of row selected
 movetopath(){
-    path=$( awk "NR==$1" $PATH_GO_LIST )
+    path=$(awk "NR==$1" $PATH_GO_LIST | awk '{print $2}') # select first column
     cd $path
 }
 
@@ -48,10 +43,24 @@ movetopath(){
 #Function to remove path by input number
 #$1 = number of row selected
 removepath(){
-    sed -i '' $1d $PATH_GO_LIST
-    echo "The line n.$1 has been removed"
+    if [[ $1 =~ ^-?[0-9]+$ ]]
+    then
+        sed -i '' $1d $PATH_GO_LIST
+        echo -e "The line n.$1 has been removed\n"
+    else
+        echo -e "No lines have been removed\n"
+    fi
+    
     # sed command Linux, try:
     # sed -i $1d $PATH_GO_LIST
+}
+
+# Function to find line number by input
+# $1: path name to find
+findPath(){
+
+    line_number=$( cut -d ' ' -f 1 $PATH_GO_LIST | grep -w -n $1 $PATH_GO_LIST | cut -d : -f 1 | head -n 1 )
+    echo "$line_number"
 }
 
 go_list(){
@@ -64,37 +73,60 @@ go_list(){
         #Get input choise
         read -p "> " choise opt1
         
-        if [[ $choise == *"rm"* ]]
+        if [[ $choise == "rm" ]]
         then
             removepath $opt1
             
         elif [[ $choise =~ ^-?[0-9]+$ ]]
         then
             movetopath $choise
-
+            
         fi
         
         
-        #No, the parameter is 'now', save path
-    elif [ $1 = "now" ]
+    #No, the parameter is 'now', save path
+    elif [ $1 = "save" ]
     then
+        if [ -z $2 ]
+        then
+            read -p "Save path as: " title
+        else
+            title=$2
+        fi
+
+        exist=$( findPath $title )
+        
+        while [ ! -z $exist ]
+        do
+            read -p "Title \"$title\" exist! Choose another title:" title
+            exist=$( findPath $title )
+        done
         
         #Get number lines
         let number_line=$(( $( cat $PATH_GO_LIST | wc -l ) +1))
-        #save list
-        echo "$( pwd )">> $PATH_GO_LIST
-        #print path saved
+        #Save list
+        echo -e "$title\t\t$( pwd )">> $PATH_GO_LIST
+        #Print path saved
         echo "Save path: $( pwd ) as $number_line"
+
         
         
-        #No, the parameter is a number option
+    #No, the parameter is a number option
     elif [[ $1 =~ ^-?[0-9]+$ ]]
     then
-        movetopath $1 #go to path
+        movetopath $1 #Go to path
         
-        #No, input not recognized
+    #No, the parameter is a string, find path
     else
-        echo "some is wrong :("
+        #get line of path by title
+        line=$( findPath $1 )
+
+        if [ -z $line ]
+        then
+            echo "\"$1\" - Title not found!"
+        else
+        movetopath $line
+        fi
     fi
 }
 

@@ -19,10 +19,19 @@ $ go
 ```
 ![](https://github.com/loreand95/Go_script/blob/master/images/go-move.gif)
 
+### Go to path by title
+```
+$ go [title]
+```
+
 ### Save favourite path
+Move to path
 ```
 $ cd [path]
-$ go now
+```
+Save with a title
+```
+$ go save [title]
 ```
 
 ### Remove path
