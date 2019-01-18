@@ -1,39 +1,38 @@
 #!/bin/bash
 
 # *************************    GO - V.01    ***************************	#
-# Script to save and navigate on your list of favourite path		#
-#									#
-# Tested on:  macOS Mojave 10.14.2					#
-#									#
-#			      INSTRUCTIONS				#
-# 1) Set environment variable $GO_PATH with path of go_path.bak.txt	#
-# 	 Example:							#
-#    export GO_PATH=/Users/loreand/go/go_path.bak			#
-#									#
-# 2) Go to directory, cd /.../go					#
-# 3) Run command with ". go" or "source go"				#
-#									#
-#				TIPS					#
-# Add script folder to $PATH and add ' alias go=". go" ' to env		#
-#									#
-# 						Lorenzo Andreoli	#
+# Script to save and navigate on your list of favourite path			#
+#																		#
+# Tested on:  macOS Mojave 10.14.2										#
+#																		#
+#			      			 INSTRUCTIONS								#																	#
+# 1) Go to directory, cd /go/to/path/Go_script							#
+# 2) Run command with ". go" or "source go"								#
+#																		#
+#								TIPS									#
+# Add 'alias go=". go"' to env to run "go" everywhere					#
+#																		#
+# 						Lorenzo Andreoli								#
 # ********************************************************************* #
 
 
+PATH_GO=$(dirname "$0")
+export PATH_GO_LIST="$PATH_GO/go_list.bak"
+
 #Function to check configuration script
 check_configuration(){
-	#Is $GO_PATH env?
-	if [ -z $GO_PATH ]
+	#Is $PATH_GO_LIST env?
+	if [ -z $PATH_GO_LIST ]
 		#NO
 		then
-		echo '-ERROR: $GO_PATH NOT FOUND!'
-		echo -e "-TIP: Check if $GO_PATH is add on environment variable :)\n"
+		echo '\n-ERROR: $PATH_GO_LIST NOT FOUND!'
+		echo -e "-TIP: Check if $PATH_GO_LIST is add on environment variable :)\n"
 		
 		return 1
-		#Is $GO_PATH valid?
-		elif [ ! -e $GO_PATH ]
+		#Is $PATH_GO_LIST valid?
+		elif [ ! -e $PATH_GO_LIST ]
 			then
-			echo -e "-ERROR: $GO_PATH NOT EXIST!"
+			echo -e "-ERROR: $PATH_GO_LIST NOT EXIST!\n"
 			return 1
 	fi
 }
@@ -41,7 +40,7 @@ check_configuration(){
 #Function to move path by input number
 #$1 = number of row selected
 movetopath(){
-	path=$( awk "NR==$1" $GO_PATH )
+	path=$( awk "NR==$1" $PATH_GO_LIST )
 	cd $path
 }
 
@@ -49,19 +48,19 @@ movetopath(){
 #Function to remove path by input number
 #$1 = number of row selected
 removepath(){
-	sed -i '' $1d $GO_PATH
+	sed -i '' $1d $PATH_GO_LIST
 
 	# sed command Linux, try:
-	# sed -i $1d $GO_PATH
+	# sed -i $1d $PATH_GO_LIST
 }
 
-go_path(){
+PATH_GO_LIST(){
 	# 1 parameter is empty?
 	if [ -z $1 ]
 		#Yes, see favourite list
 		then
 			#Print and enumerate
-			cat $GO_PATH | nl
+			cat $PATH_GO_LIST | nl
 			#Get input choise
 			read -p '> ' choise
 			
@@ -81,9 +80,9 @@ go_path(){
 			then
 
 			#Get number lines
-			let number_line=$(( $( cat $GO_PATH | wc -l ) +1))
+			let number_line=$(( $( cat $PATH_GO_LIST | wc -l ) +1))
 			#save list
-			echo "$( pwd )">> $GO_PATH
+			echo "$( pwd )">> $PATH_GO_LIST
 			#print path saved
 			echo "Save path: $( pwd ) as $number_line" 
 
@@ -102,13 +101,14 @@ go_path(){
 
 # Main function
 main(){
-	#Check $GO_PATH exist
+	
+	#Check $PATH_GO_LIST exist
 	check_configuration
 
 	if [ $? -eq 0 ]
 		#Right configuration :)
 		then
-			go_path "$@"
+			PATH_GO_LIST "$@"
 		else
 		#Bad configuration :(
 		echo -e "EXIT - How to run the script? More details on www.github.com/loreand95/Go_script\n"	
