@@ -25,7 +25,7 @@ check_configuration(){
     if [ -z $PATH_GO_LIST ]
     #NO
     then
-        echo '\n-ERROR: $PATH_GO_LIST NOT FOUND!'
+        echo '-ERROR: $PATH_GO_LIST NOT FOUND!'
         echo -e "-TIP: Check if $PATH_GO_LIST is add on environment variable :)\n"
         
         return 1
@@ -49,12 +49,12 @@ movetopath(){
 #$1 = number of row selected
 removepath(){
     sed -i '' $1d $PATH_GO_LIST
-    
+    echo "The line n.$1 has been removed"
     # sed command Linux, try:
     # sed -i $1d $PATH_GO_LIST
 }
 
-PATH_GO_LIST(){
+go_list(){
     # 1 parameter is empty?
     if [ -z $1 ]
     #Yes, see favourite list
@@ -62,16 +62,16 @@ PATH_GO_LIST(){
         #Print and enumerate
         cat $PATH_GO_LIST | nl
         #Get input choise
-        read -p '> ' choise
+        read -p "> " choise opt1
         
         if [[ $choise == *"rm"* ]]
         then
-            read -p 'Remove line: ' select_line
-            removepath $select_line
+            removepath $opt1
             
         elif [[ $choise =~ ^-?[0-9]+$ ]]
         then
             movetopath $choise
+
         fi
         
         
@@ -108,7 +108,7 @@ main(){
     if [ $? -eq 0 ]
     #Right configuration :)
     then
-        PATH_GO_LIST "$@"
+        go_list "$@"
     else
         #Bad configuration :(
         echo -e "EXIT - How to run the script? More details on www.github.com/loreand95/Go_script\n"
