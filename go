@@ -15,9 +15,9 @@
 # 						Lorenzo Andreoli								#
 # ********************************************************************* #
 
-
-PATH_GO=$(dirname "$0")
-export PATH_GO_LIST="$PATH_GO/go_list.bak"
+PATH_GO=$(which go)
+DIR_GO=$(dirname "$PATH_GO")
+export PATH_GO_LIST="$DIR_GO/go_list.bak"
 
 #Function to check configuration script
 check_configuration(){
