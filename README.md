@@ -9,7 +9,7 @@ $ echo 'export PATH=$PATH: [path] /Go_script' >> .bash_profile
 ```
 Add alias to script
 ```
-> echo 'alias go=". go"' >> .bash_profile
+$ echo 'alias go=". go"' >> .bash_profile
 ```
 ## Run
 
