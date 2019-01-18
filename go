@@ -1,18 +1,18 @@
 #!/bin/bash
 
 # *************************    GO - V.01    ***************************	#
-# Script to save and navigate on your list of favourite path			#
-#																		#
-# Tested on:  macOS Mojave 10.14.2										#
-#																		#
-#			      			 INSTRUCTIONS								#																	#
-# 1) Go to directory, cd /go/to/path/Go_script							#
-# 2) Run command with ". go" or "source go"								#
-#																		#
-#								TIPS									#
-# Add 'alias go=". go"' to env to run "go" everywhere					#
-#																		#
-# 						Lorenzo Andreoli								#
+# Script to save and navigate on your list of favourite path            #
+#                                                                       #
+# Tested on:  macOS Mojave 10.14.2                                      #
+#                                                                       #
+#INSTRUCTIONS                                                           #
+# 1) Go to directory, cd /go/to/path/Go_script                          #
+# 2) Run command with ". go" or "source go"                             #
+#                                                                       #
+#TIPS                                                                   #
+# Add 'alias go=". go"' to env to run "go" everywhere                   #
+#                                                                       #
+#                                           Lorenzo Andreoli            #
 # ********************************************************************* #
 
 PATH_GO=$(which go)
