@@ -50,9 +50,6 @@ removepath(){
     else
         echo -e "No lines have been removed\n"
     fi
-    
-    # sed command Linux, try:
-    # sed -i $1d $PATH_GO_LIST
 }
 
 # Function to find line number by input
