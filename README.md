@@ -2,11 +2,11 @@
 Script to save and navigate on your list of favourite path
 
 ## Install on OSX
-Add the "Go_script" folder to the environment variable, replacing `[path]` with the path of the folder. 
-For example: `/Users/loreand/Documents/Go_script`
+Add the `Go_script` folder to the environment variable, replacing `[path]` with the path of the folder. 
+For example:
 ```
 $ cd ~
-$ echo 'export PATH=$PATH: [path]' >> .bash_profile
+$ echo 'export PATH=$PATH:/Users/loreand/Documents/Go_script' >> .bash_profile
 ```
 
 Add alias to script
