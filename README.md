@@ -19,7 +19,7 @@ $ echo 'alias go=". go"' >> .bash_profile
 ```
 $ go
 ```
-![](https://github.com/loreand95/Go_script/blob/master/images/go.gif)
+![](https://github.com/loreand95/Go_script/blob/master/images/go_example.gif)
 
 ### Go to path by title
 ```
