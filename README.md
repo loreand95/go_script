@@ -21,9 +21,14 @@ $ go
 ```
 ![](https://github.com/loreand95/Go_script/blob/master/images/go_example.gif)
 
-### Go to path by title
+### Go to path
 ```
 $ go [title]
+```
+or 
+
+```
+$ go [number of row]
 ```
 
 ### Save favourite path
